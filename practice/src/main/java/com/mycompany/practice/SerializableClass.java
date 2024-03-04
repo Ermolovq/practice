@@ -20,7 +20,11 @@ class SerializableClass implements Serializable {
     public float getNum() {
         return num;
     }
-    public float getResult() {
+    public int getResult() {
         return result;
+    }
+    
+    public void setResult(int number) {
+        this.result = number;
     }
 }
