@@ -1,4 +1,4 @@
-public class Main {
+public class Test {
     public static void main(String[] args) {
         // Створення екземпляра класу Solver
         Solver solver = new Solver();

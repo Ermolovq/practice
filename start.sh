@@ -1,0 +1,9 @@
+cd src/main/java
+javac CalculationResult.java
+javac Solver.java
+#javac SerializationDemo.java
+javac Test.java
+java CalculationResult;
+java Solver;
+#java SerializationDemo;
+java Test;
