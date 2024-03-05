@@ -3,6 +3,9 @@ package com.mycompany.practice;
 import java.io.Serializable;
 
 class SerializableClass implements Serializable {
+    /**
+     * Клас який може містити в собі число та результат дії з ним
+     */
     private static final long serialVersionUID = 1L;
     
     private float num;
