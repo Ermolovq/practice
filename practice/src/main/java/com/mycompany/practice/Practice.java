@@ -24,12 +24,13 @@ public class Practice {
             System.out.println("'2' - change your decimal number to binary and count alternations of 0 and 1.");
             System.out.print("\nType: ");
             int userInput = scanner.nextInt();
+            
             switch(userInput){
                 case 0: i = 0; break;   // Завершуємо програму
                 case 1: results = load();   // Показуємо результати
                     chooseDisplay(1, results);
                     break;  
-                case 2: System.out.print("\nYour number: ");    // Знаходимо кількість з
+                case 2: System.out.print("\nYour number: ");    // Знаходимо кількість чергувань 0 та 1 десяткового числа, перетвореного в двійковий варіант
                     int num = scanner.nextInt();
                     results.addResult(BinaryAlternation(num));
                     save(results);
@@ -46,6 +47,7 @@ public class Practice {
         System.out.print("\nType: ");
         int userInput = scanner.nextInt();
         System.out.println();
+        
         switch(userInput){
             case 0: Factory Results = new ResultsFactory();
                 Collection listResults = Results.factoryMethod();
