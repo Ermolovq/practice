@@ -3,7 +3,7 @@ package com.mycompany.practice;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-class CollectionClass implements Serializable {
+public class CollectionClass implements Serializable {
     /**
      * Клас, який може містити в собі результати різних дій в текстовому форматі.
      */
@@ -23,8 +23,8 @@ class CollectionClass implements Serializable {
         return results.size();
     }
     
-    public void addResult (String number) {
-        this.results.add(number);
+    public void addResult (String result) {
+        this.results.add(result);
         i++;
     }
 }

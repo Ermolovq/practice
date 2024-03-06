@@ -1,9 +1,7 @@
-com\mycompany\practice\ResultsFactory.class
+com\mycompany\practice\Table.class
 com\mycompany\practice\Practice.class
-com\mycompany\practice\Results.class
-com\mycompany\practice\All.class
-com\mycompany\practice\SerializableClass.class
 com\mycompany\practice\CollectionClass.class
-com\mycompany\practice\AllFactory.class
 com\mycompany\practice\Collection.class
+com\mycompany\practice\Saver.class
 com\mycompany\practice\Factory.class
+com\mycompany\practice\TableFactory.class

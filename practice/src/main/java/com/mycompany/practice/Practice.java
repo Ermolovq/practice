@@ -18,69 +18,55 @@ public class Practice {
         CollectionClass results = new CollectionClass();
         
         while(i != 0){
-            System.out.println("------------------------------------------------------------------------------------");
+            System.out.println("\n------------------------------------------------------------------------------------");
             System.out.println("'0' - stop program.");
             System.out.println("'1' - show results.");
             System.out.println("'2' - change your decimal number to binary and count alternations of 0 and 1.");
             System.out.print("\nType: ");
             int userInput = scanner.nextInt();
-            
             switch(userInput){
-                case 0: i = 0; break;   // Завершуємо програму
-                case 1: results = load();   // Показуємо результати
-                    chooseDisplay(1, results);
-                    break;  
-                case 2: System.out.print("\nYour number: ");    // Знаходимо кількість чергувань 0 та 1 десяткового числа, перетвореного в двійковий варіант
+                case 0 -> i = 0;
+                // Завершуємо програму
+                case 1 -> {
+                    results = Saver.load();   // Показуємо результати
+                    chooseDisplay(results);
+                }
+                case 2 -> {
+                    System.out.print("\nYour number: ");    // Відтворюємо метод підрахунку кількості чергувань 0 та 1
                     int num = scanner.nextInt();
                     results.addResult(BinaryAlternation(num));
-                    save(results);
-                    break;
-                default: System.out.print("\n\n"); break;
+                    Saver.save(results);
+                }
+                default -> System.out.print("\n\n");
             }
         }
     }
 
-    private static void chooseDisplay(int i, CollectionClass results){
+    private static void chooseDisplay(CollectionClass results){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\n'0' - show only results.");
-        System.out.println("'1' - show results and their indexes.");
+        System.out.println("\n'0' - show default table.");
+        System.out.println("'1' - show table with indexes.");
+        System.out.println("'2' - show table with indexes and two borders.");
+        System.out.println("another - return.");
         System.out.print("\nType: ");
         int userInput = scanner.nextInt();
         System.out.println();
-        
         switch(userInput){
-            case 0: Factory Results = new ResultsFactory();
-                Collection listResults = Results.factoryMethod();
-                listResults.display(results);
-                i = 0;
-                return;
-            case 1: Factory All = new AllFactory();
-                Collection listAll = All.factoryMethod();
-                listAll.display(results);
-                return;
-            default: return;
-        }
-    }
-    
-    // Метод для серіалізації об'єкту
-    private static void save(CollectionClass object) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("data.ser"))) {
-            outputStream.writeObject(object);
-            //System.out.println("Object serialized");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Метод для десеріалізації об'єкту
-    public static CollectionClass load() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("data.ser"))) {
-            CollectionClass object = (CollectionClass) inputStream.readObject();
-            //System.out.println("Object deserialized");
-            return object;
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
+            case 0 -> {
+                Factory Table = new TableFactory();
+                Collection table = Table.factoryMethod();
+                table.drawTable(results);
+            }
+            case 1 -> {
+                Factory Table = new TableFactory();
+                Collection table = Table.factoryMethod();
+                table.drawTable(results, "default");
+            }
+            case 2 -> {
+                Factory Table = new TableFactory();
+                Collection table = Table.factoryMethod();
+                table.drawTable(results, "border");
+            }
         }
     }
     
