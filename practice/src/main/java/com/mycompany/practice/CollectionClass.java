@@ -3,10 +3,11 @@ package com.mycompany.practice;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Клас, який може містити в собі результати дій в текстовому форматі.
+ */
 public class CollectionClass implements Serializable {
-    /**
-     * Клас, який може містити в собі результати різних дій в текстовому форматі.
-     */
+    
     private static final long serialVersionUID = 1L;
     
     private ArrayList<String> results;
