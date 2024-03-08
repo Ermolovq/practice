@@ -6,7 +6,7 @@ package com.mycompany.practice;
  */
 public class BinaryAlternation {
     // Метод для виведення результату підрахунку чергувань
-    public static String count(int decimalNumber){
+    public static int count(int decimalNumber) {
         // Перетворення десяткового числа на його двійковий варіант
         String binaryNumber = Integer.toBinaryString(decimalNumber);
 
@@ -16,7 +16,7 @@ public class BinaryAlternation {
         // Виведення результату
         System.out.println("The number of alternations of 0 and 1 in the binary representation of a number " + decimalNumber + " is " + alternations);
         
-        return String.format("%d", alternations);
+        return alternations;
     }
     
     // Метод для підрахунку кількості чергувань 0 та 1

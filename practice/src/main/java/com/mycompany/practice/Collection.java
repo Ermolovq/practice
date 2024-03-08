@@ -1,4 +1,7 @@
 package com.mycompany.practice;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 /**
  * Інтерйфейс, що реалізує FactoryMethod
  */
@@ -12,67 +15,60 @@ class Table implements Collection {
     public void drawTable(CollectionClass list){
         // Перевірка на null
         if(list.getSize() == 0){
-            System.out.println("Список результатів порожній. \nПовертаємося до головного меню...\n");
+            System.out.println("List with results is empty.");
             return;
         }
         
-        // Обчислення кількості рядків таблиці
-        int rows = (int) Math.ceil((double) list.getSize() / 4);
-        
-        // Виведення значень масиву у вигляді таблиці
-        for(int i = 0; i < rows; i++){
-            for (int j = 0; j < 4; j++) {
-                int c = i * 4 + j; // Обчислення індексу поточного елементу масиву
-                if (c < list.getSize()) {
-                    System.out.print(list.getResult(c) + "\t"); // Виведення значення елемента
-                }else{
-                    System.out.print("\t"); // Виведення пустої комірки, якщо елементи закінчилися
-                }
-            }
-            System.out.println("");
+        System.out.println("ID\tNumber\tBinary Alternations");
+        for(int i = 0; i < list.getSize(); i++){
+            System.out.println(i + "\t" + list.getNumber(i) + "\t" + list.getResult(i));
         }
     }
     @Override
-    public void drawTable(CollectionClass list, String type){
+    public void drawTable(CollectionClass list, String type) {
         if(list.getSize() == 0){
-            System.out.println("Список результатів порожній. \nПовертаємося до головного меню...\n");
+            System.out.println("List with results is empty.");
             return;
         }
+        
+        ExecutorService math = Executors.newFixedThreadPool(3);
+        
+        Runnable min = new Math("min", list);
+        Runnable max = new Math("max", list);
+        Runnable avg = new Math("avg", list);
+        
         switch(type){
             // Таблиця з індексами до результатів(початок від 1)
             case "default" -> {
-                int rows = (int) Math.ceil((double) list.getSize() / 4);
-                
-                for(int i = 0; i < rows; i++){
-                    for (int j = 0; j < 4; j++) {
-                        int c = i * 4 + j;
-                        if (c < list.getSize()) {
-                            System.out.print((c + 1) + ". " + list.getResult(c) + "\t");
-                        }else{
-                            System.out.print("\t");
-                        }
-                    }
-                    System.out.println("");
+                System.out.println("ID\tNumber\tBinary Alternations");
+                for(int i = 0; i < list.getSize(); i++) {
+                    System.out.println(i + "\t" + list.getNumber(i) + "\t" + list.getResult(i));
                 }
+                
+                math.execute(min);
+                math.execute(max);
+                math.execute(avg);
+                math.shutdown();
+                
+                while(!math.isTerminated()) {
+                    try {
+                        Thread.sleep(100); // Чекаємо 100 мс перед перевіркою статусу завершення потоків
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                
+                System.out.println("\nMin = " + list.getMin() + "\t\tMax = " + list.getMax() + "\t\tAverage = " + list.getAvg());
             }
             // Така ж таблиця, але з виділенням
             case "border" -> {
-                System.out.println("------------------------------");
-                
-                int rows = (int) Math.ceil((double) list.getSize() / 4);
-                
-                for(int i = 0; i < rows; i++){
-                    for (int j = 0; j < 4; j++) {
-                        int c = i * 4 + j;
-                        if (c < list.getSize()) {
-                            System.out.print((c + 1) + ". " + list.getResult(c) + "\t");
-                        }else{
-                            System.out.print("\t");
-                        }
-                    }
-                    System.out.println("");
+                System.out.println("-----------------------------------");
+                System.out.println("ID\tNumber\tBinary Alternations");
+                for(int i = 0; i < list.getSize(); i++){
+                    System.out.println(i + "\t" + list.getNumber(i) + "\t" + list.getResult(i));
                 }
-                System.out.println("------------------------------");
+                System.out.println("\nMin = " + list.getMin() + "\t\tMax = " + list.getMax() + "\t\tAverage = " + list.getAvg());
+                System.out.println("-----------------------------------");
             }
         }
     }

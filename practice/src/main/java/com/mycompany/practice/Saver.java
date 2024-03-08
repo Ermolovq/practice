@@ -3,6 +3,7 @@ package com.mycompany.practice;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -23,10 +24,14 @@ public class Saver {
             CollectionClass object = (CollectionClass) inputStream.readObject();
             //System.out.println("Object deserialized");
             return object;
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (FileNotFoundException e) {
+            System.out.println("\nFile with results is doesn't exist.");
+            texts.Return();
+            return null;
+        }
+        catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return null;
         }
     }
 }
-

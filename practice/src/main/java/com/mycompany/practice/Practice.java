@@ -10,5 +10,3 @@ public class Practice {
         Menu.showStartMenu();
     }
 }
-
-

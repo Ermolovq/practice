@@ -10,7 +10,7 @@ public class Menu {
     
     private Menu(){};
     
-    public static Menu getInstance(){
+    public static Menu getInstance() {
         if(instance == null){
             instance = new Menu();
         }
@@ -22,7 +22,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
 
         int i = -1;
-        CollectionClass results = new CollectionClass();
+        CollectionClass list = new CollectionClass();
         
         while(i != 0){
             System.out.println("\n------------------------------------------------------------------------------------");
@@ -30,27 +30,34 @@ public class Menu {
             System.out.println("'1' - show results.");
             System.out.println("'2' - change your decimal number to binary and count alternations of 0 and 1.");
             System.out.print("\nType: ");
-            int userInput = scanner.nextInt();
-            switch(userInput){
-                case 0 -> i = 0;    // Завершуємо програму
-                case 1 -> { // Показуємо результати
-                    results = Saver.load();
-                    chooseDisplay(results);
-                }
-                case 2 -> { // Відтворюємо BinaryAlternation
-                    System.out.println("\nType anything other than numbers to return to start menu.");
-                    System.out.println("\nType: ");    // Відтворюємо метод підрахунку кількості чергувань 0 та 1
-                    String input = scanner.next();
-                    try {   // Перевіряємо введені дані на можливість перетворення в int
-                        int num = Integer.parseInt(input);
-                        results.addResult(BinaryAlternation.count(num));
-                        Saver.save(results);
-                    } catch (NumberFormatException e){  // Інакше повертаємося до головного меню
-                        texts.Return();
+            String userInput = scanner.next();
+            try {
+                int input = Integer.parseInt(userInput);
+                switch(input){
+                    case 0 -> i = 0;    // Завершуємо програму
+                    case 1 -> { // Показуємо результати
+                        list = Saver.load();
+                        if(list != null){
+                            chooseDisplay(list);
+                        }else{
+                            list = new CollectionClass();
+                        }
                     }
+                    case 2 -> { // Відтворюємо BinaryAlternation
+                        System.out.println("\nType anything other than numbers to return to start menu.");
+                        System.out.println("\nType: ");    // Відтворюємо метод підрахунку кількості чергувань 0 та 1
+                        userInput = scanner.next();
+                        try {   // Перевіряємо введені дані на можливість перетворення в int
+                            input = Integer.parseInt(userInput);
+                            list.add(input, BinaryAlternation.count(input));
+                            Saver.save(list);
+                        } catch (NumberFormatException e){  // Інакше повертаємося до головного меню
+                            texts.Return();
+                        }
+                    }
+                    default -> texts.Return();    // Повертаємося до головного меню
                 }
-                default -> texts.Return();    // Повертаємося до головного меню
-            }
+            } catch (NumberFormatException e){}
         }
     }
     
@@ -58,8 +65,8 @@ public class Menu {
     private static void chooseDisplay(CollectionClass results){
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n'0' - show default table.");
-        System.out.println("'1' - show table with indexes.");
-        System.out.println("'2' - show table with indexes and two borders.");
+        System.out.println("'1' - show table with minimum, maximum and average results.");
+        System.out.println("'2' - show table with minimum, maximum and average results and borders.");
         System.out.println("anything other - return to start menu.");
         System.out.print("\nType: ");
         String input = scanner.next();
