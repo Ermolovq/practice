@@ -1,6 +1,6 @@
 package com.mycompany.practice;
 /**
- * Клас, що реалізує паралельне виконання
+ * Клас, методи якого можуть бути виконані паралельно.
  */
 public class Math implements Runnable{
     private String task;

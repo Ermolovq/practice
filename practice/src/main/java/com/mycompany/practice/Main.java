@@ -1,6 +1,6 @@
 package com.mycompany.practice;
 
-public class Practice {
+public class Main {
     /**
      * Цей клаc є оновним.
      * Виводить в консоль меню з переліком функцій.

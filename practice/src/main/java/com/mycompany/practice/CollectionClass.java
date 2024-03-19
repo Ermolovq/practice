@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Клас, який може містити в собі результати дій в текстовому форматі.
+ * Клас, який може містити в собі числа та результати дій над ними в текстовому форматі.
  */
-public class CollectionClass implements Serializable {
+public class CollectionClass implements Serializable{
     private static final long serialVersionUID = 1L;
     
     private ArrayList <Integer> numbers;

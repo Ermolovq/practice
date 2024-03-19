@@ -38,26 +38,13 @@ class Table implements Collection {
         Runnable avg = new Math("avg", list);
         
         switch(type){
-            // Таблиця з індексами до результатів(початок від 1)
+            // Таблиця з індексами до результатів
             case "default" -> {
                 System.out.println("ID\tNumber\tBinary Alternations");
                 for(int i = 0; i < list.getSize(); i++) {
                     System.out.println(i + "\t" + list.getNumber(i) + "\t" + list.getResult(i));
                 }
-                
-                math.execute(min);
-                math.execute(max);
-                math.execute(avg);
-                math.shutdown();
-                
-                while(!math.isTerminated()) {
-                    try {
-                        Thread.sleep(100); // Чекаємо 100 мс перед перевіркою статусу завершення потоків
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                
+                Command.doMath(math, min, max, avg);
                 System.out.println("\nMin = " + list.getMin() + "\t\tMax = " + list.getMax() + "\t\tAverage = " + list.getAvg());
             }
             // Така ж таблиця, але з виділенням
@@ -67,6 +54,7 @@ class Table implements Collection {
                 for(int i = 0; i < list.getSize(); i++){
                     System.out.println(i + "\t" + list.getNumber(i) + "\t" + list.getResult(i));
                 }
+                Command.doMath(math, min, max, avg);
                 System.out.println("\nMin = " + list.getMin() + "\t\tMax = " + list.getMax() + "\t\tAverage = " + list.getAvg());
                 System.out.println("-----------------------------------");
             }

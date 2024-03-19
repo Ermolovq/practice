@@ -1,5 +1,6 @@
 com\mycompany\practice\Table.class
-com\mycompany\practice\Practice.class
+com\mycompany\practice\Main.class
+com\mycompany\practice\Command.class
 com\mycompany\practice\Menu.class
 com\mycompany\practice\CollectionClass.class
 com\mycompany\practice\Math.class
@@ -8,4 +9,3 @@ com\mycompany\practice\Collection.class
 com\mycompany\practice\Saver.class
 com\mycompany\practice\Factory.class
 com\mycompany\practice\TableFactory.class
-com\mycompany\practice\texts.class

@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * Клас, який містить в собі серіалізацію(save) та десиріалізацію(load)
+ * Клас, який містить в собі серіалізацію(save) та десеріалізацію(load)
  */
 public class Saver {
     public static void save(CollectionClass object) {
@@ -26,7 +26,7 @@ public class Saver {
             return object;
         } catch (FileNotFoundException e) {
             System.out.println("\nFile with results is doesn't exist.");
-            texts.Return();
+            Command.Return();
             return null;
         }
         catch (IOException | ClassNotFoundException e) {

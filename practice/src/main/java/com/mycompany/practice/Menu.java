@@ -52,10 +52,10 @@ public class Menu {
                             list.add(input, BinaryAlternation.count(input));
                             Saver.save(list);
                         } catch (NumberFormatException e){  // Інакше повертаємося до головного меню
-                            texts.Return();
+                            Command.Return();
                         }
                     }
-                    default -> texts.Return();    // Повертаємося до головного меню
+                    default -> Command.Return();    // Повертаємося до головного меню
                 }
             } catch (NumberFormatException e){}
         }
@@ -89,10 +89,10 @@ public class Menu {
                     Collection table = Table.factoryMethod();
                     table.drawTable(results, "border");
                 }
-                default -> texts.Return();  // Повертаємося до головного меню
+                default -> Command.Return();  // Повертаємося до головного меню
             }
         } catch (NumberFormatException e){  // Інакше повертаємося до головного меню
-            texts.Return();
+            Command.Return();
         }
     }
 }
